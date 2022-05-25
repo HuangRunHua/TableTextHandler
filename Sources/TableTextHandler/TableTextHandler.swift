@@ -7,14 +7,17 @@
 
 import Foundation
 
-class TableTextHandler {
+/// A framework that can handle table-style data stored in a text File.
+public class TableTextHandler {
     
-    typealias Table = [[String]]
-    typealias List = [String]
+    public typealias Table = [[String]]
+    public typealias List = [String]
     
-    var bundlePath: String
-    var filePath: String
-    var fileExtension: String = "txt"
+    /// The added Bundle Path.
+    public var bundlePath: String
+    /// The target file name.
+    public var filePath: String
+    private var fileExtension: String = "txt"
     private let currentPath: String = #file.split(separator: "/").map(String.init).dropLast().joined(separator: "/")
     
     
@@ -22,7 +25,7 @@ class TableTextHandler {
     /// - Parameters:
     ///   - bundlePath: The added Bundle Path.
     ///   - filePath: The target file name.
-    init(bundlePath: String, filePath: String) {
+    public init(bundlePath: String, filePath: String) {
         self.bundlePath = bundlePath
         self.filePath = filePath
     }
