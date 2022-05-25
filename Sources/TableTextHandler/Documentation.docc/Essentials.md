@@ -20,6 +20,6 @@ In Xcode, select **File -> New -> Target**, select **Bundle** in Target, and cus
 Drag your text file to the project, and select **Target Membership** with this bundle, then make sure the bundle is ticked in its target membership section:
 ![](4.png)
 
-Finally add the bundle to your target. In the target's build phase, open the **copy files** phase and click the **+** button. Select the bundle and click **Add**:
+Finally add the bundle to your target. In the target's build phase, open the **copy files** phase and click the **+** button. Select the bundle and click **Add**, result shows in the following picture:
 ![](5.png)
 
