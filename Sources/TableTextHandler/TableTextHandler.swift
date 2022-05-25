@@ -32,7 +32,7 @@ public class TableTextHandler {
     
     private func getBundleURL() -> URL {
         let currentDirectoryURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-        let bundleURL = URL(fileURLWithPath: "TableFileBundle.bundle", relativeTo: currentDirectoryURL)
+        let bundleURL = URL(fileURLWithPath: self.bundlePath, relativeTo: currentDirectoryURL)
         return bundleURL
     }
     
