@@ -10,9 +10,14 @@ TableTextHandler gives you powerful functions to read and write table-style type
 
 ## Using TableTextHandler in your project
 
-To use TableTextHandler in your project:
+1. To use TableTextHandler in your project:
 
-Add the following line to the dependencies in your Package.swift file:
+2. Add the following line to the dependencies in your Package.swift file:
 ```swift
-.package(url: "https://github.com/apple/swift-numerics", from: "1.0.0"),
+.package(url: "https://github.com/HuangRunHua/TableTextHandler.git", from: "1.0.0"),
 ```
+
+3. Add `import TableTextHandler` in your source code.
+
+## Documnets Support
+You can get the built-in documentation of TableTextHandler through the **Build Documents** button.
