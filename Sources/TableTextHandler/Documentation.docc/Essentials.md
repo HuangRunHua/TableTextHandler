@@ -23,3 +23,10 @@ Drag your text file to the project, and select **Target Membership** with this b
 Finally add the bundle to your target. In the target's build phase, open the **copy files** phase and click the **+** button. Select the bundle and click **Add**, result shows in the following picture:
 ![](5.png)
 
+### Add TableTextHandler Package as Frameworks and Libraries
+After fetching `TableTextHandler` package using Swift Package, you need to confirm that both Tagets (project target and bundle target) have embed TableTextHandler Package.
+The following picture shows a project with `TableTextHandler` package that has been successfully added to Frameworks and Libraries. 
+![The Project Target](6.png)
+The following picture shows a bundle with `TableTextHandler` package that has been successfully added to Frameworks and Libraries. 
+![](7.png)
+
