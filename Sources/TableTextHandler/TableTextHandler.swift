@@ -13,18 +13,21 @@ public class TableTextHandler {
     public typealias Table = [[String]]
     public typealias List = [String]
     
-    /// The added Bundle Path.
+    /// The added Bundle Path with bundle name and bundle extension. For example `TestBundle.bundle` is great.
     public var bundlePath: String
-    /// The target file name.
+    /// The target file name without file extension. For example, `human_date_data` is great.
     public var filePath: String
     private var fileExtension: String = "txt"
     private let currentPath: String = #file.split(separator: "/").map(String.init).dropLast().joined(separator: "/")
     
-    
     /// Initializing a TableTextHandler class.
     /// - Parameters:
-    ///   - bundlePath: The added Bundle Path.
-    ///   - filePath: The target file name.
+    ///   - bundlePath: The added Bundle Path with bundle name and bundle extension. For example `TestBundle.bundle` is great.
+    ///   - filePath: The target file name without file extension. For example, `human_date_data` is great.
+    ///
+    ///  ```swift
+    ///  let tabHandle = TableTextHandler(bundlePath: "TestBundle.bundle", filePath: "human_date_data")
+    ///  ```
     public init(bundlePath: String, filePath: String) {
         self.bundlePath = bundlePath
         self.filePath = filePath
@@ -172,14 +175,31 @@ public class TableTextHandler {
     /// Write a Table to a txt file with custom file name.
     /// - Parameters:
     ///   - table: The Table that wanted to store in file.
-    ///   - path: Target file name with file extension. For example, `target.txt` is greate.
-    public func writeTable(table: Table, to path: String) {
-        let saveFileURL = URL(fileURLWithPath: "/"+[self.currentPath, path].joined(separator: "/"))
-        do {
-            try table.map { $0.joined(separator: " ") }.joined(separator: "\n").write(to: saveFileURL, atomically: true, encoding: .utf8)
-        } catch {
-            print("Can't write table to path: \(saveFileURL), error: \(error)")
+    ///   - path: The absolute path to a document that will generate a text file which stores data you want to save. Usually generate by FileManager. For example, `Users/username/Documents`. The path needs to be existed. The default value will cause the generated file be stored in current package
+    ///   - fileName: The target file that will store data you want to store, contain file name and file extension. For example, `text.txt` is greate.
+    ///
+    /// The following example shows how to save text file to `current project`.
+    /// ```swift
+    /// let path = #file.split(separator: "/").map(String.init).dropLast().joined(separator: "/")
+    /// tabHandle.writeTable(table: data, with: "test.txt")
+    /// // Generated `test.txt` file will be stored in your current project.
+    /// ```
+    /// The following example shows how to save text file to `Documents`.
+    /// ```swift
+    /// let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path
+    /// tabHandle.writeTable(table: data, with: "test.txt")
+    /// // Generated `test.txt` file will be saved in your `Documents folder`.
+    /// ```
+    public func writeTable(table: Table, to path: String = "", with fileName: String) {
+        func _writeTable(table: Table, to path: String = self.currentPath, with fileName: String) {
+            let saveFileURL = URL(fileURLWithPath: "/"+[path, fileName].joined(separator: "/"))
+            do {
+                try table.map { $0.joined(separator: " ") }.joined(separator: "\n").write(to: saveFileURL, atomically: true, encoding: .utf8)
+            } catch {
+                print("Can't write table to path: \(saveFileURL), error: \(error)")
+            }
         }
+        _writeTable(table: table, to: path.isEmpty ? self.currentPath: path, with: fileName)
     }
 }
 
