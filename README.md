@@ -1,6 +1,6 @@
 # TableTextHandler
 
-A framework that can handle table-style data stored in a text File
+A framework that can handle table-style data stored in a text File.
 
 ## Overview
 
